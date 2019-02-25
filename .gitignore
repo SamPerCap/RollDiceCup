@@ -68,3 +68,10 @@ fastlane/readme.md
 .idea/misc.xml
 .idea/modules.xml
 .idea/vcs.xml
+gradle.properties
+app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml
+app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml
+app/src/main/res/layout/activity_main.xml
+app/src/main/res/drawable/ic_launcher_background.xml
+app/src/main/res/drawable-v24/ic_launcher_foreground.xml
+app/src/main/AndroidManifest.xml
