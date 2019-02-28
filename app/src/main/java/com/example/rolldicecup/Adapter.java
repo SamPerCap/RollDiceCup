@@ -3,6 +3,7 @@ package com.example.rolldicecup;
 import android.content.Context;
 import android.graphics.Color;
 import android.support.annotation.NonNull;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,14 +18,17 @@ public class Adapter extends ArrayAdapter<History> {
 
     private Context _context;
     private int _resource;
+    String TAG = "Developer";
 
     public Adapter(@NonNull Context context, int resource) {
         super(context, resource);
+        Log.d(TAG,"Initializating the adapter");
         _context = context;
         _resource = resource;
     }
 
     public View getView(int position, View convertView, ViewGroup parent) {
+        Log.d(TAG, "Starting getting View");
         SimpleDateFormat hour = getItem(position).get_Time();
         ArrayList<ImageView> diceImages = getItem(position).get_diceSide();
 
@@ -36,14 +40,17 @@ public class Adapter extends ArrayAdapter<History> {
 
         //This will change the background color to light gray.
         if (position % 2 == 0) {
+            Log.d(TAG,"Setting different background");
             convertView.setBackgroundColor(Color.rgb(222, 222, 222));
         }
 
         hourTv.setText("" + hour);
         for (ImageView image : diceImages) {
+            Log.d(TAG,"Filling the text view with images from the array");
             diceTv.setText("" + image);
         }
 
+        Log.d(TAG,"Getting the view has ended");
         return convertView;
     }
 }
