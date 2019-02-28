@@ -16,7 +16,11 @@ import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
     String TAG = "Developer";
-    int[] images = {  R.drawable.dice_side_1
+   
+
+    String TAG = "Developer";
+
+    int[] images = {R.drawable.dice_side_1
             , R.drawable.dice_side_2
             , R.drawable.dice_side_3
             , R.drawable.dice_side_4
@@ -46,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
     private void AddImage() {
                 amountOfDices = number.getValue();
                 Log.d(TAG, "Dice number" +amountOfDices);
@@ -82,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
     }
     
 
-    public void rollDice(View view)
+/*    public void rollDice(View view)
     {
         int dice1 = randomNumber(0,5);
         int dice2 = randomNumber(0,5);
@@ -116,13 +121,37 @@ public class MainActivity extends AppCompatActivity {
         fl6.setImageResource(images[dice6]);
 
         Log.d(TAG, "image array and then adding images");
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        Log.d(TAG, "It boots up");
+        LocateItems();
+    }
+*/
+    public void rollDice(View view) {
+        Log.d(TAG, "I Hit the rollDice() and random number is generating. Also set image");
+        Iv1.setImageResource(images[randomNumber()]);
+        Iv2.setImageResource(images[randomNumber()]);
+        Iv3.setImageResource(images[randomNumber()]);
+        Iv4.setImageResource(images[randomNumber()]);
+        Iv5.setImageResource(images[randomNumber()]);
+        Iv6.setImageResource(images[randomNumber()]);
 
     }
 
-    private int randomNumber(int min, int max)
-    {
+    private void LocateItems() {
+        Log.d(TAG, "Locate items");
+        Iv1 = findViewById(R.id.imageView);
+        Iv2 = findViewById(R.id.imageView2);
+        Iv3 = findViewById(R.id.imageView3);
+        Iv4 = findViewById(R.id.imageView4);
+        Iv5 = findViewById(R.id.imageView5);
+        Iv6 = findViewById(R.id.imageView6);
+
+    }
+
+    private int randomNumber() {
         Random random = new Random();
-        return random.nextInt(max - min + 1)+min;
+        return random.nextInt(6);
     }
 
 }
