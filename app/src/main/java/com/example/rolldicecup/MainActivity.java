@@ -12,6 +12,8 @@ import android.widget.NumberPicker;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 
+import java.util.Random;
+
 public class MainActivity extends AppCompatActivity {
     String TAG = "Developer";
     int[] images = {  R.drawable.dice_side_1
@@ -63,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
                 ImageView image = new ImageView(this);
-                image.setImageResource(R.drawable.dice_side_1);
+                image.setImageResource(images[randomNumber(0,5)]);
                 image.setPadding(dicePaddingLeft,dicePaddingTop,0,0);
                 tableRow.addView(image);
 
@@ -75,9 +77,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private TableRow createNewTableROw() {
-        return  new TableRow(this);
+        return new TableRow(this);
 
-
+    }
     
 
     public void rollDice(View view)
