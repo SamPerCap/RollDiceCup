@@ -8,7 +8,7 @@
         android:id="@+id/hourTimeTv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
-    <TextView
+    <ImageView
         android:id="@+id/diceImageTv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />

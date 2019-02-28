@@ -36,7 +36,7 @@ public class Adapter extends ArrayAdapter<History> {
         convertView = inflater.inflate(_resource, parent, false);
 
         TextView hourTv = (TextView) convertView.findViewById(R.id.hourTimeTv);
-        TextView diceTv = (TextView) convertView.findViewById(R.id.diceImageTv);
+        ImageView diceIv = (ImageView) convertView.findViewById(R.id.diceImageTv);
 
         //This will change the background color to light gray.
         if (position % 2 == 0) {
@@ -47,7 +47,7 @@ public class Adapter extends ArrayAdapter<History> {
         hourTv.setText("" + hour);
         for (ImageView image : diceImages) {
             Log.d(TAG,"Filling the text view with images from the array");
-            diceTv.setText("" + image);
+            diceIv.setImageDrawable(image.getDrawable());
         }
 
         Log.d(TAG,"Getting the view has ended");
