@@ -46,7 +46,7 @@ public class Adapter extends ArrayAdapter<History> {
 
         hourTv.setText("" + hour);
         for (ImageView image : diceImages) {
-            Log.d(TAG,"Filling the text view with images from the array");
+            Log.d(TAG,"Filling the image view with images from the array");
             diceIv.setImageDrawable(image.getDrawable());
         }
 
