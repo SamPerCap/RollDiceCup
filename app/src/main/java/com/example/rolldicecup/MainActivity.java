@@ -18,7 +18,6 @@ public class MainActivity extends AppCompatActivity {
     String TAG = "Developer";
    
 
-    String TAG = "Developer";
 
     int[] images = {R.drawable.dice_side_1
             , R.drawable.dice_side_2
@@ -70,7 +69,8 @@ public class MainActivity extends AppCompatActivity {
         }
 
                 ImageView image = new ImageView(this);
-                image.setImageResource(images[randomNumber(0,5)]);
+                image.setId(i);
+                image.setImageResource(images[randomNumber()]);
                 image.setPadding(dicePaddingLeft,dicePaddingTop,0,0);
                 tableRow.addView(image);
 
@@ -127,6 +127,7 @@ public class MainActivity extends AppCompatActivity {
         LocateItems();
     }
 */
+/*
     public void rollDice(View view) {
         Log.d(TAG, "I Hit the rollDice() and random number is generating. Also set image");
         Iv1.setImageResource(images[randomNumber()]);
@@ -147,7 +148,7 @@ public class MainActivity extends AppCompatActivity {
         Iv5 = findViewById(R.id.imageView5);
         Iv6 = findViewById(R.id.imageView6);
 
-    }
+    }*/
 
     private int randomNumber() {
         Random random = new Random();
