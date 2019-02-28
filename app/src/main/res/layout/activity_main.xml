@@ -63,6 +63,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="36dp"
         android:text="@string/history_name"
+
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -85,6 +86,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:text="@string/roll_name"
+        android:onClick="rollDice"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/amountOfdices"
         app:layout_constraintHorizontal_bias="0.709"
