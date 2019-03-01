@@ -2,6 +2,4 @@
     <string name="roll_name">Roll</string>
     <string name="history_name">History</string>
     <string name="app_name">RollDiceCup</string>
-    <string name="back">Back</string>
-    <string name="clear">Clear</string>
 </resources>
