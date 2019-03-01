@@ -25,6 +25,9 @@ public class MainActivity extends AppCompatActivity {
     ModelHistory modelHistory;
     Intent intent;
 
+    ArrayList<ImageView>  imageViews;
+
+
 
     int[] images = {R.drawable.dice_side_1
             , R.drawable.dice_side_2
@@ -54,26 +57,16 @@ public class MainActivity extends AppCompatActivity {
 
 
                 AddImage();
-                SaveToHistory();
+                //SaveToHistory();
             }
         });
 
 
     }
 
-    private void SaveToHistory() {
-        ArrayList<ImageView> imageViews = new ArrayList<ImageView>();
-        for (int i = 0; i < amountOfDices; i++) {
-
-            imageViews.add((ImageView) findViewById(i));
-        }
-        Calendar cal = Calendar.getInstance();
-        // The preferred idiom for iterating over collections and arrays
-        modelHistory.AddHistory(new History(cal.getTime(), imageViews));
-
-    }
 
     private void AddImage() {
+        imageViews = new ArrayList<ImageView>();
         amountOfDices = number.getValue();
         Log.d(TAG, "Dice number" + amountOfDices);
         ll = (TableLayout) findViewById(R.id.table);
@@ -91,16 +84,25 @@ public class MainActivity extends AppCompatActivity {
             }
 
             ImageView image = new ImageView(this);
-            image.setId(i);
-            image.setImageResource(images[randomNumber()]);
+            int ran = randomNumber();
+            image.setId(ran);
+            image.setImageResource(images[ran]);
             image.setPadding(dicePaddingLeft, dicePaddingTop, 0, 0);
+            imageViews.add(image);
+
             tableRow.addView(image);
 
             LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
             ll.addView(tableRow, lp);
 
+            // The preferred idiom for iterating over collections and arrays
+
+
 
         }
+
+        Calendar cal = Calendar.getInstance();
+        modelHistory.AddHistory(new History(cal.getTime(),imageViews));
     }
 
     private TableRow createNewTableROw() {
