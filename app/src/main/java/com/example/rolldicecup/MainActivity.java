@@ -25,7 +25,7 @@ import java.util.Random;
 public class MainActivity extends AppCompatActivity {
     String TAG = "Developer";
    ModelHistory modelHistory;
-   Calendar cal = Calendar.getInstance();
+
 
     int[] images = {R.drawable.dice_side_1
             , R.drawable.dice_side_2
@@ -66,6 +66,7 @@ modelHistory=ModelHistory.getInstance();
 
             imageViews.add((ImageView)findViewById(i));
         }
+        Calendar cal = Calendar.getInstance();
         // The preferred idiom for iterating over collections and arrays
  modelHistory.AddHistory(new History(cal.getTime(),imageViews));
 
