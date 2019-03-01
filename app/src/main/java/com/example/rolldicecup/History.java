@@ -5,16 +5,28 @@ import android.widget.ImageView;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class History {
-    private SimpleDateFormat _Time = new SimpleDateFormat("HH:mm:ss");
+    public SimpleDateFormat _Time = new SimpleDateFormat("HH:mm:ss");
+
+
+    private Date date;
     private ArrayList<ImageView> _diceSide = new ArrayList<>();
     String TAG = "Developer";
 
-    public History(SimpleDateFormat Time, ArrayList<ImageView> diceSide) {
+    public History(Date date, ArrayList<ImageView> diceSide) {
         Log.d(TAG,"Initializating the HistoryBE constructor");
         this._diceSide = diceSide;
-        this._Time = Time;
+        this.date = date;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
     }
 
     public SimpleDateFormat get_Time() {

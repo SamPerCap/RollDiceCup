@@ -1,5 +1,7 @@
 package com.example.rolldicecup;
 
+import android.media.Image;
+import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,12 +14,18 @@ import android.widget.NumberPicker;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 
+import com.example.rolldicecup.Model.ModelHistory;
+
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
     String TAG = "Developer";
-   
-
+   ModelHistory modelHistory;
+   Calendar cal = Calendar.getInstance();
 
     int[] images = {R.drawable.dice_side_1
             , R.drawable.dice_side_2
@@ -33,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
     int amountOfDices=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
+modelHistory=ModelHistory.getInstance();
        super.onCreate(savedInstanceState);
         setContentView(R.layout.dynamic_view);
         number = findViewById(R.id.amountOfdices);
@@ -46,8 +54,21 @@ public class MainActivity extends AppCompatActivity {
 
 
                 AddImage();
+                SaveToHistory();
             }
         });
+
+
+    }
+    private void SaveToHistory() {
+        ArrayList<ImageView>  imageViews = new ArrayList<ImageView>();
+        for (int i = 0; i < amountOfDices; i++) {
+
+            imageViews.add((ImageView)findViewById(i));
+        }
+        // The preferred idiom for iterating over collections and arrays
+ modelHistory.AddHistory(new History(cal.getTime(),imageViews));
+
     }
 
     private void AddImage() {
