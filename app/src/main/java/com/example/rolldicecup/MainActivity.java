@@ -1,5 +1,6 @@
 package com.example.rolldicecup;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -21,7 +22,8 @@ import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
     String TAG = "Developer";
-   ModelHistory modelHistory;
+    ModelHistory modelHistory;
+    Intent intent;
 
 
     int[] images = {R.drawable.dice_side_1
@@ -39,10 +41,11 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-modelHistory=ModelHistory.getInstance();
-       super.onCreate(savedInstanceState);
+        modelHistory = ModelHistory.getInstance();
+        super.onCreate(savedInstanceState);
         setContentView(R.layout.dynamic_view);
         number = findViewById(R.id.amountOfdices);
+        intent = new Intent(this, MainActivity.class);
         number.setMinValue(1);
         number.setMaxValue(6);
         findViewById(R.id.roll).setOnClickListener(new View.OnClickListener() {
@@ -57,15 +60,16 @@ modelHistory=ModelHistory.getInstance();
 
 
     }
+
     private void SaveToHistory() {
-        ArrayList<ImageView>  imageViews = new ArrayList<ImageView>();
+        ArrayList<ImageView> imageViews = new ArrayList<ImageView>();
         for (int i = 0; i < amountOfDices; i++) {
 
-            imageViews.add((ImageView)findViewById(i));
+            imageViews.add((ImageView) findViewById(i));
         }
         Calendar cal = Calendar.getInstance();
         // The preferred idiom for iterating over collections and arrays
- modelHistory.AddHistory(new History(cal.getTime(),imageViews));
+        modelHistory.AddHistory(new History(cal.getTime(), imageViews));
 
     }
 
@@ -174,28 +178,30 @@ modelHistory=ModelHistory.getInstance();
     }*/
 
     private int randomNumber() {
-        Log.d(TAG,"Do random number");
+        Log.d(TAG, "Do random number");
         Random random = new Random();
         return random.nextInt(6);
     }
 
-    public void exitApp(MenuItem item)
-    {
-        Log.d(TAG,"The app will close now");
+    public void exitApp(MenuItem item) {
+        Log.d(TAG, "The app will close now");
         this.finish();
     }
 
 
     public void changeViewToHistory(MenuItem item) {
+        Log.d(TAG, "Changing view to history view");
         setContentView(R.layout.roll_history);
         ListView lstView = (ListView) findViewById(R.id.lstView);
         Adapter adapter = new Adapter(this,
                 R.layout.roll_history_adapter
-                ,modelHistory.getHistoryList());
+                , modelHistory.getHistoryList());
         lstView.setAdapter(adapter);
+        finishActivity(0);
     }
 
     public void ReturnView(View view) {
-        setContentView(R.layout.dynamic_view);
+        Log.d(TAG, "Chaing view back");
+        startActivity(intent);
     }
 }

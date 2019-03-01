@@ -13,8 +13,10 @@ import android.widget.TextView;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.TimeZone;
 
 public class Adapter extends ArrayAdapter<History> {
     public SimpleDateFormat _Time = new SimpleDateFormat("HH:mm:ss");
@@ -49,6 +51,7 @@ public class Adapter extends ArrayAdapter<History> {
             convertView.setBackgroundColor(Color.rgb(222, 222, 222));
         }
 
+        _Time.setTimeZone(TimeZone.getTimeZone("GMT+1"));
         hourTv.setText("" + _Time.format(date));
         for (ImageView image : diceImages) {
             Log.d(TAG,"Filling the image view with images from the array");
