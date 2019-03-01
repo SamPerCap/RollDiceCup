@@ -22,6 +22,7 @@ import java.util.Random;
 public class MainActivity extends AppCompatActivity {
     String TAG = "Developer";
    ModelHistory modelHistory;
+    ArrayList<ImageView>  imageViews;
 
 
     int[] images = {R.drawable.dice_side_1
@@ -51,25 +52,21 @@ modelHistory=ModelHistory.getInstance();
 
 
                 AddImage();
-                SaveToHistory();
+                //SaveToHistory();
             }
         });
 
 
     }
     private void SaveToHistory() {
-        ArrayList<ImageView>  imageViews = new ArrayList<ImageView>();
-        for (int i = 0; i < amountOfDices; i++) {
 
-            imageViews.add((ImageView)findViewById(i));
-        }
-        Calendar cal = Calendar.getInstance();
-        // The preferred idiom for iterating over collections and arrays
- modelHistory.AddHistory(new History(cal.getTime(),imageViews));
+
+
 
     }
 
     private void AddImage() {
+        imageViews = new ArrayList<ImageView>();
         amountOfDices = number.getValue();
         Log.d(TAG, "Dice number" + amountOfDices);
         ll = (TableLayout) findViewById(R.id.table);
@@ -87,16 +84,25 @@ modelHistory=ModelHistory.getInstance();
             }
 
             ImageView image = new ImageView(this);
-            image.setId(i);
-            image.setImageResource(images[randomNumber()]);
+            int ran = randomNumber();
+            image.setId(ran);
+            image.setImageResource(images[ran]);
             image.setPadding(dicePaddingLeft, dicePaddingTop, 0, 0);
+            imageViews.add(image);
+
             tableRow.addView(image);
 
             LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
             ll.addView(tableRow, lp);
 
+            // The preferred idiom for iterating over collections and arrays
+
+
 
         }
+
+        Calendar cal = Calendar.getInstance();
+        modelHistory.AddHistory(new History(cal.getTime(),imageViews));
     }
 
     private TableRow createNewTableROw() {
