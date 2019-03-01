@@ -1,13 +1,11 @@
 package com.example.rolldicecup;
 
-import android.media.Image;
-import android.provider.MediaStore;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.NumberPicker;
@@ -16,10 +14,8 @@ import android.widget.TableRow;
 
 import com.example.rolldicecup.Model.ModelHistory;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
@@ -34,11 +30,12 @@ public class MainActivity extends AppCompatActivity {
             , R.drawable.dice_side_5
             , R.drawable.dice_side_6};
     TableRow tableRow;
-    TableLayout ll ;
+    TableLayout ll;
     int dicePaddingLeft = 177;
     int dicePaddingTop = 50;
     NumberPicker number;
-    int amountOfDices=0;
+    int amountOfDices = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 modelHistory=ModelHistory.getInstance();
@@ -50,7 +47,6 @@ modelHistory=ModelHistory.getInstance();
         findViewById(R.id.roll).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
 
 
                 AddImage();
@@ -73,41 +69,45 @@ modelHistory=ModelHistory.getInstance();
     }
 
     private void AddImage() {
-                amountOfDices = number.getValue();
-                Log.d(TAG, "Dice number" +amountOfDices);
-                ll =(TableLayout)findViewById(R.id.table);
-                ll.removeAllViews();
-                for (int i = 0; i <amountOfDices ; i++) {
+        amountOfDices = number.getValue();
+        Log.d(TAG, "Dice number" + amountOfDices);
+        ll = (TableLayout) findViewById(R.id.table);
 
-                    Log.d(TAG, "Dice i" +i);
+        ll.removeAllViews();
+        for (int i = 0; i < amountOfDices; i++) {
 
-        if ( i%2 == 0) {
+            Log.d(TAG, "Dice i" + i);
 
-             tableRow = createNewTableROw();
-         }
-         else
-        {
-            ll.removeView(tableRow);
-        }
+            if (i % 2 == 0) {
 
-                ImageView image = new ImageView(this);
-                image.setId(i);
-                image.setImageResource(images[randomNumber()]);
-                image.setPadding(dicePaddingLeft,dicePaddingTop,0,0);
-                tableRow.addView(image);
-
-                LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-                ll.addView(tableRow, lp);
-
-
+                tableRow = createNewTableROw();
+            } else {
+                ll.removeView(tableRow);
             }
+
+            ImageView image = new ImageView(this);
+            image.setId(i);
+            image.setImageResource(images[randomNumber()]);
+            image.setPadding(dicePaddingLeft, dicePaddingTop, 0, 0);
+            tableRow.addView(image);
+
+            LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+            ll.addView(tableRow, lp);
+
+
+        }
     }
 
     private TableRow createNewTableROw() {
         return new TableRow(this);
 
     }
-    
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu, menu);
+        return true;
+    }
 
 /*    public void rollDice(View view)
     {
@@ -173,8 +173,23 @@ modelHistory=ModelHistory.getInstance();
     }*/
 
     private int randomNumber() {
+        Log.d(TAG,"Do random number");
         Random random = new Random();
         return random.nextInt(6);
     }
 
+    public void exitApp(MenuItem item)
+    {
+        Log.d(TAG,"The app will close now");
+        this.finish();
+    }
+
+
+    public void changeViewToHistory(MenuItem item) {
+        setContentView(R.layout.roll_history);
+    }
+
+    public void ReturnView(View view) {
+        setContentView(R.layout.dynamic_view);
+    }
 }
