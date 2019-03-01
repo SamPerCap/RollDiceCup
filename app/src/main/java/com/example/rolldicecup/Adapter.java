@@ -13,15 +13,19 @@ import android.widget.TextView;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 public class Adapter extends ArrayAdapter<History> {
-
+    public SimpleDateFormat _Time = new SimpleDateFormat("HH:mm:ss");
     private Context _context;
     private int _resource;
     String TAG = "Developer";
 
-    public Adapter(@NonNull Context context, int resource) {
-        super(context, resource);
+    public Adapter(@NonNull Context context,
+                   int resource
+    ,@NonNull List<History> objects) {
+        super(context, resource,objects);
         Log.d(TAG,"Initializating the adapter");
         _context = context;
         _resource = resource;
@@ -29,13 +33,14 @@ public class Adapter extends ArrayAdapter<History> {
 
     public View getView(int position, View convertView, ViewGroup parent) {
         Log.d(TAG, "Starting getting View");
-        SimpleDateFormat hour = getItem(position).get_Time();
+        Date date = getItem(position).getDate();
         ArrayList<ImageView> diceImages = getItem(position).get_diceSide();
 
         LayoutInflater inflater = LayoutInflater.from(_context);
         convertView = inflater.inflate(_resource, parent, false);
 
         TextView hourTv = (TextView) convertView.findViewById(R.id.hourTimeTv);
+
         ImageView diceIv = (ImageView) convertView.findViewById(R.id.diceImageTv);
 
         //This will change the background color to light gray.
@@ -44,11 +49,12 @@ public class Adapter extends ArrayAdapter<History> {
             convertView.setBackgroundColor(Color.rgb(222, 222, 222));
         }
 
-        hourTv.setText("" + hour);
+        hourTv.setText("" + _Time.format(date));
         for (ImageView image : diceImages) {
             Log.d(TAG,"Filling the image view with images from the array");
-            diceIv.setImageDrawable(image.getDrawable());
+
         }
+      //  diceIv.setImageResource();
 
         Log.d(TAG,"Getting the view has ended");
         return convertView;

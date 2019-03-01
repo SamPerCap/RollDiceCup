@@ -8,6 +8,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.NumberPicker;
 import android.widget.TableLayout;
 import android.widget.TableRow;
@@ -187,6 +188,11 @@ modelHistory=ModelHistory.getInstance();
 
     public void changeViewToHistory(MenuItem item) {
         setContentView(R.layout.roll_history);
+        ListView lstView = (ListView) findViewById(R.id.lstView);
+        Adapter adapter = new Adapter(this,
+                R.layout.roll_history_adapter
+                ,modelHistory.getHistoryList());
+        lstView.setAdapter(adapter);
     }
 
     public void ReturnView(View view) {

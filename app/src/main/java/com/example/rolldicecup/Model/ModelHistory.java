@@ -24,6 +24,10 @@ public class ModelHistory {
         historyList.add(history);
 
     }
+    public ArrayList<History> getHistoryList()
+    {
+        return historyList;
+    }
     public void clear()
     {
         historyList.clear();
