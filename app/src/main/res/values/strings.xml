@@ -2,4 +2,6 @@
     <string name="roll_name">Roll</string>
     <string name="history_name">History</string>
     <string name="app_name">RollDiceCup</string>
+    <string name="exit">Exit</string>
+    <string name="backText">Roll more dices!</string>
 </resources>
