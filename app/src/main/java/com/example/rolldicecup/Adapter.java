@@ -24,12 +24,7 @@ import java.util.List;
 import java.util.TimeZone;
 
 public class Adapter extends ArrayAdapter<History> {
-    int[] imagesDraw = {R.drawable.dice_side_1
-            , R.drawable.dice_side_2
-            , R.drawable.dice_side_3
-            , R.drawable.dice_side_4
-            , R.drawable.dice_side_5
-            , R.drawable.dice_side_6};
+
    int widthImage = 100;
    int heightImage = 100;
     public SimpleDateFormat _Time = new SimpleDateFormat("HH:mm:ss");
@@ -73,17 +68,12 @@ public class Adapter extends ArrayAdapter<History> {
 
         for (ImageView image : diceImages) {
             Log.d(TAG,"Filling the image view with images from the array");
-            Log.d(TAG, "getView: " +diceImages.get(0).getId());
             ImageView imageView = new ImageView(_context);
-            imageView.setImageResource(imagesDraw[image.getId()]);
+            imageView.setImageDrawable(image.getDrawable());
             imageView.setAdjustViewBounds(true);
             imageView.setMaxWidth(widthImage);
             imageView.setMaxHeight(heightImage);
 
-          /*  ViewGroup.LayoutParams layoutParams = imageView.getLayoutParams();
-         layoutParams.height = 20;
-         layoutParams.width = 20; */
-            //   imageView.setLayoutParams(layoutParams);
             tableRow.addView(imageView);
 
         }

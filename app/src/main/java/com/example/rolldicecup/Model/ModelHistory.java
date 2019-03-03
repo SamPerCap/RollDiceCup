@@ -8,7 +8,7 @@ public class ModelHistory {
     private ArrayList<History> historyList = new ArrayList<>();
     private static volatile ModelHistory instance;
 
-
+//singleton
     public static ModelHistory getInstance() {
         if (instance == null) {
             synchronized (ModelHistory.class) {
