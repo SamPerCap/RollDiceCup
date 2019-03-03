@@ -18,8 +18,10 @@ import android.widget.TextView;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.TimeZone;
 
 public class Adapter extends ArrayAdapter<History> {
     int[] imagesDraw = {R.drawable.dice_side_1
@@ -64,6 +66,7 @@ public class Adapter extends ArrayAdapter<History> {
         }
         LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
 
+        _Time.setTimeZone(TimeZone.getTimeZone("GMT+1"));
         hourTv.setText("" + _Time.format(date));
         tableRow.addView(hourTv);
         
