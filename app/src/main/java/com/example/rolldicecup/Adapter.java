@@ -28,6 +28,8 @@ public class Adapter extends ArrayAdapter<History> {
             , R.drawable.dice_side_4
             , R.drawable.dice_side_5
             , R.drawable.dice_side_6};
+   int widthImage = 100;
+   int heightImage = 100;
     public SimpleDateFormat _Time = new SimpleDateFormat("HH:mm:ss");
     private Context _context;
     private int _resource;
@@ -71,7 +73,10 @@ public class Adapter extends ArrayAdapter<History> {
             Log.d(TAG, "getView: " +diceImages.get(0).getId());
             ImageView imageView = new ImageView(_context);
             imageView.setImageResource(imagesDraw[image.getId()]);
-            imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
+            imageView.setAdjustViewBounds(true);
+            imageView.setMaxWidth(widthImage);
+            imageView.setMaxHeight(heightImage);
+
           /*  ViewGroup.LayoutParams layoutParams = imageView.getLayoutParams();
          layoutParams.height = 20;
          layoutParams.width = 20; */
