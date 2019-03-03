@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
     String TAG = "Developer";
     ModelHistory modelHistory;
     Intent intent;
-    int minimunAmountOfDecies = 1
+    int minimunAmountOfDecies = 1;
     int maxAmountOfdecies = 6;
     ArrayList<ImageView>  imageViews;
 
